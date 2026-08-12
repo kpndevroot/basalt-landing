@@ -2,7 +2,6 @@ import {
   ArrowRight,
   CheckboxIcon,
   DownloadIcon,
-  FileIcon,
   FolderIcon,
   GithubIcon,
   GraphIcon,
@@ -268,47 +267,16 @@ export default function Home() {
             Free and MIT-licensed · No account with us, ever · Try the bundled sample vault with no repo at all
           </p>
 
-          {/* device mock — the browse screen with an unpushed edit, in the app's own tokens */}
-          <div className="device" aria-hidden="true">
-            <div className="device-screen">
-              <div className="device-row">
-                <span className="device-title">Vault</span>
-                <span className="crumb">main · a13bfee</span>
-              </div>
-              <div className="tags">
-                <span className="chip chip-accent">#project</span>
-                <span className="chip">#reading</span>
-                <span className="chip">#daily</span>
-              </div>
-              <div className="file">
-                <span className="file-dot">
-                  <PencilIcon size={14} />
-                </span>
-                <div style={{ flex: 1 }}>
-                  <div className="file-name">2026-08-02.md</div>
-                  <div className="file-meta">daily · edited offline</div>
-                </div>
-                <span className="badge">PENDING</span>
-              </div>
-              <div className="file">
-                <span className="file-dot">
-                  <FileIcon size={15} />
-                </span>
-                <div style={{ flex: 1 }}>
-                  <div className="file-name">Basalt architecture.md</div>
-                  <div className="file-meta">notes/eng · 4 backlinks</div>
-                </div>
-              </div>
-              <div className="file">
-                <span className="file-dot">
-                  <FileIcon size={15} />
-                </span>
-                <div style={{ flex: 1 }}>
-                  <div className="file-name">Reading list.md</div>
-                  <div className="file-meta">inbox · 12 links</div>
-                </div>
-              </div>
-            </div>
+          {/* The real browse screen, captured from a release build. This was a hand-drawn CSS mock
+              until there were screenshots to use; an invented vault next to six genuine captures
+              read as decoration, so the illustration is gone rather than duplicated. */}
+          <div className="hero-shot">
+            <img
+              src="/shots/01-browse.png"
+              alt="Basalt browsing a vault: folders, favourites and notes, rendered offline"
+              width={540}
+              height={1080}
+            />
           </div>
         </section>
 

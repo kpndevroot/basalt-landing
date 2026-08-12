@@ -320,116 +320,24 @@ h3 {
   color: var(--muted);
 }
 
-/* ---- device mock ---- */
+/* ---- hero screenshot ---- */
 
-.device {
-  margin: 56px auto 0;
-  width: 300px;
-  max-width: 82vw;
+/* Capped rather than full-bleed: a phone screen blown up to the hero's width reads as a tablet
+   render, which is the opposite of what a screenshot is for. */
+.hero-shot {
+  margin-top: 56px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-shot img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
   border: 1px solid var(--border);
-  border-radius: 40px;
+  border-radius: var(--r-panel);
   background: var(--surface);
-  padding: 12px;
-  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.55);
-}
-
-.device-screen {
-  background: var(--bg);
-  border-radius: 30px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  padding: 20px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.device-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.device-title {
-  color: var(--text);
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: -0.01em;
-}
-
-.crumb {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--secondary);
-}
-
-.file {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-box);
-  padding: 12px 14px;
-}
-
-.file-dot {
-  width: 26px;
-  height: 26px;
-  border-radius: 8px;
-  background: var(--accent-faint);
-  color: var(--accent);
-  display: grid;
-  place-items: center;
-  flex: none;
-}
-
-.file-name {
-  color: var(--body);
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.file-meta {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.chip {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  padding: 5px 12px;
-  border-radius: var(--r-chip);
-  background: var(--surface-alt);
-  color: var(--body);
-}
-
-.chip-accent {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
-/* The unpushed-edit chip in the device mock. Mono and uppercase because that is exactly how the
-   app draws a queue state on the pending-changes row. */
-.badge {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 3px 7px;
-  border-radius: var(--r-chip);
-  background: var(--accent-faint);
-  color: var(--accent);
-  border: 1px solid var(--accent-weak);
-  flex: none;
 }
 
 /* ---- section heading ---- */
