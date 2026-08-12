@@ -1041,3 +1041,43 @@ h3 {
   align-items: center;
   gap: 20px;
 }
+
+/* ---- screenshots ---- */
+
+/* Horizontal scroll rather than a shrink-to-fit grid: six phone screens squeezed into one
+   viewport width are illegible, and a store listing already proves nobody minds swiping. */
+.shots {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 260px);
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.shot {
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--r-panel);
+  background: var(--surface);
+}
+
+.shot figcaption {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.shot figcaption strong {
+  color: var(--text);
+}

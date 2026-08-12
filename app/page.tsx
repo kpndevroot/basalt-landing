@@ -27,6 +27,46 @@ const RELEASE = 'https://github.com/kpndevroot/basalt/releases/latest';
 const PLUGIN = 'https://github.com/kpndevroot/obsidian-basalt-causeway';
 const PLUGIN_RELEASE = 'https://github.com/kpndevroot/obsidian-basalt-causeway/releases';
 
+/** Real captures from a release build on a Pixel 8, not renders. Files live in `public/shots`. */
+const SHOTS = [
+  {
+    src: '/shots/01-browse.png',
+    alt: 'Browsing a vault: folders, favourites and recent notes',
+    title: 'Browse.',
+    body: 'Folders, favourites and recents, straight off the disk.',
+  },
+  {
+    src: '/shots/02-note.png',
+    alt: 'A note rendered with a callout and wikilinks',
+    title: 'Read.',
+    body: 'Callouts, wikilinks and frontmatter, rendered natively.',
+  },
+  {
+    src: '/shots/03-search.png',
+    alt: 'Full-text search results with matches highlighted',
+    title: 'Search.',
+    body: 'Full-text across every note, with the match highlighted.',
+  },
+  {
+    src: '/shots/04-graph.png',
+    alt: 'The note connection graph with a minimap',
+    title: 'Graph.',
+    body: 'Every wikilink is an edge. Filters, search and a minimap.',
+  },
+  {
+    src: '/shots/05-tags.png',
+    alt: 'The tag index, showing nested tags and counts',
+    title: 'Tags.',
+    body: 'Nested tags with counts, indexed at sync time.',
+  },
+  {
+    src: '/shots/06-diagram.png',
+    alt: 'A Mermaid diagram rendered inside a note',
+    title: 'Diagrams.',
+    body: 'Mermaid renders from the bundled library — offline too.',
+  },
+];
+
 /**
  * The positioning, in four lines. Deliberately written as a *standard someone can meet* rather
  * than as a claim about how many people meet it — see the note rendered under this grid. Each
@@ -269,6 +309,29 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* screenshots — real captures, not renders. The device mock above is an illustration;
+            this is the app. Scrolls horizontally rather than shrinking to six unreadable thumbs. */}
+        <section id="screens" className="wrap section" style={{ paddingBottom: 0 }}>
+          <div className="section-head">
+            <span className="section-label">The app</span>
+            <h2>Six screens, all of them offline.</h2>
+            <p>
+              Captured on the bundled sample vault with the network off — the same thing you get before connecting a
+              repo.
+            </p>
+          </div>
+          <div className="shots">
+            {SHOTS.map((s) => (
+              <figure className="shot" key={s.src}>
+                <img src={s.src} alt={s.alt} width={540} height={1080} loading="lazy" />
+                <figcaption>
+                  <strong>{s.title}</strong> {s.body}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 
