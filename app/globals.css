@@ -1,0 +1,1043 @@
+/*
+ * Design tokens transcribed verbatim from Basalt's default "basalt" palette
+ * (src/theme/palettes/basalt.ts) and radii/spacing (src/theme/tokens.ts).
+ *
+ * Dark is the reference look. Light mode flips *within* the theme via prefers-color-scheme,
+ * mirroring how the app carries a dark + light Palette for every theme id.
+ */
+
+:root {
+  /* dark palette — the reference implementation */
+  --bg: #0b0b0c;
+  --surface: #1c1c1f;
+  --surface-alt: #2a2a2e;
+  --border: #2a2a2e;
+  --border-strong: #3a3a3e;
+
+  --text: #ffffff;
+  --body: #d9d9d6;
+  --secondary: #8a8a8e;
+  --muted: #5c5c60;
+
+  --accent: #ff5a1f;
+  --on-accent: #0b0b0c;
+  --danger: #ff4d6d;
+
+  --code-bg: #1c1c1f;
+  --code-text: #d9d9d6;
+
+  /* accent at low opacity — the annotation wash, never a second hue */
+  --accent-weak: rgba(255, 90, 31, 0.24);
+  --accent-faint: rgba(255, 90, 31, 0.1);
+
+  /* radius scale (src/theme/tokens.ts) */
+  --r-chip: 999px;
+  --r-card: 24px;
+  --r-panel: 20px;
+  --r-input: 18px;
+  --r-box: 16px;
+  --r-sm: 14px;
+
+  /* spacing */
+  --screen-x: 20px;
+  --gutter: 24px;
+
+  --font-display: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --surface-alt: #efeeea;
+    --border: #e7e7e4;
+    --border-strong: #d6d6d3;
+
+    --text: #0b0b0c;
+    --body: #3f3f42;
+    --secondary: #6b6b70;
+    --muted: #8a8a8e;
+
+    --accent: #ff5a1f;
+    --on-accent: #0b0b0c;
+    --danger: #c81e3a;
+
+    /* the mockup renders code on near-black even in light mode — a Basalt-only quirk */
+    --code-bg: #0b0b0c;
+    --code-text: #d9d9d6;
+
+    --accent-weak: rgba(255, 90, 31, 0.16);
+    --accent-faint: rgba(255, 90, 31, 0.07);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* The hero and the CTA are the only places that animate, and only once, on load. Everything else
+   is static — an offline-first app should not need a scroll show to hold attention. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero > *,
+  .cta > * {
+    animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hero > *:nth-child(2) {
+    animation-delay: 0.06s;
+  }
+  .hero > *:nth-child(3) {
+    animation-delay: 0.12s;
+  }
+  .hero > *:nth-child(4) {
+    animation-delay: 0.18s;
+  }
+  .hero > *:nth-child(5) {
+    animation-delay: 0.24s;
+  }
+  .hero > .device {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* ---- layout ---- */
+
+.wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(64px, 10vw, 128px);
+}
+
+/* ---- nav ---- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: var(--secondary);
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.12s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .nav-links .nav-hide {
+    display: none;
+  }
+}
+
+/* ---- buttons ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: var(--r-input);
+  padding: 14px 22px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    opacity 0.12s ease,
+    background 0.12s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+  opacity: 0.85;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--accent);
+  border-color: var(--border);
+}
+
+.btn-sm {
+  padding: 9px 16px;
+  font-size: 14px;
+}
+
+/* ---- hero ---- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-faint);
+  color: var(--accent);
+  border: 1px solid var(--accent-weak);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 6px 14px;
+  border-radius: var(--r-chip);
+}
+
+.hero {
+  padding-top: clamp(56px, 9vw, 104px);
+  padding-bottom: clamp(40px, 7vw, 80px);
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 8vw, 76px);
+  margin-top: 26px;
+}
+
+.hero .accent {
+  color: var(--accent);
+}
+
+.hero p.lede {
+  max-width: 620px;
+  margin: 24px auto 0;
+  font-size: clamp(17px, 2.4vw, 20px);
+  color: var(--secondary);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+/* The three things a visitor wants to know before tapping Download: price, account, commitment. */
+.hero-note {
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ---- device mock ---- */
+
+.device {
+  margin: 56px auto 0;
+  width: 300px;
+  max-width: 82vw;
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  background: var(--surface);
+  padding: 12px;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.55);
+}
+
+.device-screen {
+  background: var(--bg);
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.device-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.device-title {
+  color: var(--text);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.crumb {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--secondary);
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-box);
+  padding: 12px 14px;
+}
+
+.file-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--accent-faint);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.file-name {
+  color: var(--body);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.file-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: var(--r-chip);
+  background: var(--surface-alt);
+  color: var(--body);
+}
+
+.chip-accent {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* The unpushed-edit chip in the device mock. Mono and uppercase because that is exactly how the
+   app draws a queue state on the pending-changes row. */
+.badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 7px;
+  border-radius: var(--r-chip);
+  background: var(--accent-faint);
+  color: var(--accent);
+  border: 1px solid var(--accent-weak);
+  flex: none;
+}
+
+/* ---- section heading ---- */
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-head h2 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin-top: 14px;
+}
+
+.section-head p {
+  margin-top: 16px;
+  color: var(--secondary);
+  font-size: 18px;
+}
+
+/* ---- steps ---- */
+
+.steps {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  counter-reset: step;
+}
+
+@media (max-width: 860px) {
+  .steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-panel);
+  padding: 22px;
+}
+
+.step-num {
+  counter-increment: step;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.step-num::before {
+  content: "0" counter(step);
+}
+
+.step h3 {
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+.step p {
+  margin-top: 8px;
+  color: var(--secondary);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ---- the 1%: four habits ---- */
+
+.habits {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 760px) {
+  .habits {
+    grid-template-columns: 1fr;
+  }
+}
+
+.habit {
+  display: flex;
+  gap: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  padding: 26px;
+}
+
+/* Numbered because these four genuinely are a sequence: own the files, keep one copy, capture
+   away from the desk, keep the history. Each only makes sense once the one above it holds. */
+.habit-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--accent);
+  padding-top: 3px;
+  flex: none;
+}
+
+.habit h3 {
+  font-size: 19px;
+}
+
+.habit p {
+  margin-top: 10px;
+  color: var(--secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.habit code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--body);
+}
+
+/* The honesty note under the pitch. Set apart by an accent rule rather than a card, so it reads
+   as the author speaking rather than as one more feature. */
+.aside {
+  margin-top: 28px;
+  max-width: 720px;
+  border-left: 2px solid var(--accent);
+  padding-left: 20px;
+  color: var(--secondary);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.aside strong {
+  color: var(--text);
+}
+
+/* ---- the loop: obsidian → repo → basalt ---- */
+
+.loop {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.loop-node {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  padding: 26px;
+}
+
+/* The repo is the load-bearing one — the other two are interchangeable clients of it. */
+.loop-spine {
+  border-color: var(--accent-weak);
+  background: linear-gradient(var(--accent-faint), transparent), var(--surface);
+}
+
+.loop-node h3 {
+  font-size: 18px;
+}
+
+.loop-node p {
+  margin-top: 10px;
+  color: var(--secondary);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.loop-arrow {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  flex: none;
+}
+
+@media (max-width: 860px) {
+  .loop {
+    flex-direction: column;
+  }
+
+  .loop-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* ---- the companion plugin ----
+
+   Set inside one bordered panel rather than as a bare section, because Basalt Causeway is a
+   *separate download from a separate repo* — the frame is what stops a visitor reading these
+   four cards as more phone features. */
+
+.panel {
+  background: linear-gradient(var(--accent-faint), transparent 220px), var(--surface);
+  border: 1px solid var(--accent-weak);
+  border-radius: var(--r-card);
+  padding: clamp(26px, 4vw, 44px);
+}
+
+.panel-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+
+.panel-head > div:first-child {
+  max-width: 640px;
+}
+
+.panel-head h2 {
+  font-size: clamp(26px, 4vw, 38px);
+  margin-top: 14px;
+}
+
+.panel-head p {
+  margin-top: 16px;
+  color: var(--secondary);
+  font-size: 17px;
+}
+
+.panel-head strong {
+  color: var(--text);
+}
+
+.panel-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: none;
+}
+
+@media (max-width: 860px) {
+  .panel-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .panel-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* The same three nodes as the loop above, redrawn one line high — this section exists to name the
+   first arrow, so the diagram has to stay legible next to it without repeating its weight. */
+.pipe {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.pipe-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-chip);
+  padding: 8px 16px;
+  color: var(--body);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pipe-node svg {
+  color: var(--accent);
+}
+
+.pipe-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.pipe-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.causeway {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 760px) {
+  .causeway {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Inside the panel the cards sit on the panel's own surface, so they need the page background to
+   stay distinguishable from it. */
+.causeway .card {
+  background: var(--bg);
+}
+
+.panel .aside {
+  margin-top: 28px;
+}
+
+.panel code,
+.aside code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  color: var(--body);
+}
+
+/* ---- feature grid ---- */
+
+.features {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 860px) {
+  .features {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  padding: 26px;
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+  background: var(--accent-faint);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+}
+
+/* The step cards carry a number above the icon, so their box is smaller and its margins invert. */
+.icon-box-sm {
+  width: 40px;
+  height: 40px;
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
+.card h3 {
+  font-size: 19px;
+  text-wrap: balance;
+}
+
+/* ---- the "and also" strip ---- */
+
+.more {
+  list-style: none;
+  margin-top: 16px;
+  display: grid;
+  gap: 10px 28px;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border);
+  padding-top: 26px;
+}
+
+@media (max-width: 860px) {
+  .more {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .more {
+    grid-template-columns: 1fr;
+  }
+}
+
+.more li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--secondary);
+  font-size: 15px;
+}
+
+.more-icon {
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  width: 20px;
+  flex: none;
+}
+
+.card p {
+  margin-top: 10px;
+  color: var(--secondary);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ---- stack strip ---- */
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.stack span {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-chip);
+  padding: 8px 16px;
+}
+
+/* ---- cta ---- */
+
+.cta {
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  padding: clamp(40px, 7vw, 72px);
+}
+
+.cta h2 {
+  font-size: clamp(26px, 4.5vw, 40px);
+}
+
+.cta p {
+  margin: 16px auto 0;
+  max-width: 480px;
+  color: var(--secondary);
+  font-size: 18px;
+}
+
+.cta .hero-actions {
+  margin-top: 32px;
+}
+
+.cta-note {
+  margin-top: 22px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* ---- footer ---- */
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding-block: 40px;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.footer a {
+  color: var(--secondary);
+}
+
+.footer a:hover {
+  color: var(--text);
+}
+
+/* ---- legal (privacy policy) ---- */
+
+.legal-meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.legal {
+  max-width: 760px;
+}
+
+.legal h3 {
+  font-size: clamp(20px, 3vw, 24px);
+  margin-top: 48px;
+  margin-bottom: 14px;
+}
+
+.legal h3:first-child {
+  margin-top: 0;
+}
+
+.legal p {
+  color: var(--secondary);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.legal strong {
+  color: var(--text);
+}
+
+.legal ul {
+  list-style: none;
+  margin: 4px 0 18px;
+  display: grid;
+  gap: 12px;
+}
+
+/* A hanging accent dash rather than a bullet, to match the mono/technical voice of the rest. */
+.legal li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--secondary);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.legal li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.legal-table {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.legal-row {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) 1fr;
+  gap: 16px;
+  padding: 16px 18px;
+  background: var(--surface);
+}
+
+.legal-row code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--accent);
+  word-break: break-word;
+}
+
+.legal-row span {
+  color: var(--secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .legal-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.footer-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+}
