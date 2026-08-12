@@ -320,31 +320,18 @@ h3 {
   color: var(--muted);
 }
 
-/* ---- hero screenshot ---- */
-
-/* Capped rather than full-bleed: a phone screen blown up to the hero's width reads as a tablet
-   render, which is the opposite of what a screenshot is for. */
-.hero-shot {
-  margin-top: 56px;
-  display: flex;
-  justify-content: center;
-}
-
-.hero-shot img {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border: 1px solid var(--border);
-  border-radius: var(--r-panel);
-  background: var(--surface);
-}
-
 /* ---- section heading ---- */
 
 .section-head {
   max-width: 640px;
   margin-bottom: 48px;
+}
+
+/* Only for the strip directly under the hero, which inherits the hero's centred axis. */
+.section-head-center {
+  margin-inline: auto;
+  margin-bottom: 36px;
+  text-align: center;
 }
 
 .section-label {

@@ -267,28 +267,19 @@ export default function Home() {
             Free and MIT-licensed · No account with us, ever · Try the bundled sample vault with no repo at all
           </p>
 
-          {/* The real browse screen, captured from a release build. This was a hand-drawn CSS mock
-              until there were screenshots to use; an invented vault next to six genuine captures
-              read as decoration, so the illustration is gone rather than duplicated. */}
-          <div className="hero-shot">
-            <img
-              src="/shots/01-browse.png"
-              alt="Basalt browsing a vault: folders, favourites and notes, rendered offline"
-              width={540}
-              height={1080}
-            />
-          </div>
         </section>
 
-        {/* screenshots — real captures, not renders. The device mock above is an illustration;
-            this is the app. Scrolls horizontally rather than shrinking to six unreadable thumbs. */}
-        <section id="screens" className="wrap section" style={{ paddingBottom: 0 }}>
-          <div className="section-head">
+        {/* Screenshots, doubling as the hero's visual — which is why this sits tight under the CTAs
+            and is centred to match them, rather than opening with a left-aligned section head. A
+            single hero screenshot lived here first and was cut: it was the same browse capture the
+            strip already opens with, so the page showed one image twice before saying anything. */}
+        <section id="screens" className="wrap" style={{ paddingTop: 8, paddingBottom: 0 }}>
+          <div className="section-head section-head-center">
             <span className="section-label">The app</span>
             <h2>Six screens, all of them offline.</h2>
             <p>
-              Captured on the bundled sample vault with the network off — the same thing you get before connecting a
-              repo.
+              Real captures, not renders — taken on the bundled sample vault with the network off, which is exactly what
+              you get before connecting a repo.
             </p>
           </div>
           <div className="shots">
