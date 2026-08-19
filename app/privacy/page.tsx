@@ -9,16 +9,17 @@ const ISSUES = 'https://github.com/kpndevroot/basalt/issues';
 /**
  * Play requires a *stable, publicly reachable* policy URL on the listing, and reviewers check that
  * the page's claims match the APK's manifest and its actual network behaviour. So every statement
- * here is one that can be checked against the source: the two hosts come from the only `https://`
- * literals in `src/`, the permission list is `android/app/src/main/AndroidManifest.xml` verbatim,
- * and "no analytics" is a claim about a dependency set anyone can grep.
+ * here is one that can be checked against the source: the permission list is
+ * `android/app/src/main/AndroidManifest.xml` verbatim, and "optional, off by default, no note
+ * content" is a claim about `src/crash/index.ts` and the settings toggle guarding it — both
+ * readable in the repo, not taken on trust.
  */
-const UPDATED = '12 August 2026';
+const UPDATED = '19 August 2026';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — Basalt',
   description:
-    'Basalt has no servers, no accounts and no analytics. Your vault and your GitHub credentials stay on your device; the only host the app ever contacts is GitHub.',
+    'Basalt has no servers and no accounts. Your vault and your GitHub credentials stay on your device. Crash reports are optional, off by default, and never include note content.',
   alternates: { canonical: '/privacy/' },
 };
 
@@ -29,12 +30,12 @@ const SUMMARY = [
     body: 'Basalt has no backend. There is no Basalt account, no server that receives your notes, and no operator-side copy of anything you write.',
   },
   {
-    title: 'No analytics or tracking',
-    body: 'No telemetry SDK, no crash reporter, no advertising identifier, no third-party analytics of any kind is compiled into the app.',
+    title: 'No ads, no tracking, no accounts',
+    body: 'No advertising identifier, no third-party analytics, no user accounts. Basalt ships an optional crash reporter — off by default, and detailed below.',
   },
   {
-    title: 'One network destination',
-    body: 'The app talks to GitHub and nothing else — to read your repo, to push your commits, and to check for a new release.',
+    title: 'GitHub, and nothing else unless you opt in',
+    body: 'The app talks to GitHub to read your repo, push your commits, and check for a new release. If you turn on crash reporting, the app also talks to Google\u2019s Crashlytics service \u2014 never on by default, and never with your notes.',
   },
   {
     title: 'Your credentials never leave the device',
@@ -142,7 +143,7 @@ export default function PrivacyPage() {
 
           <h3>What Basalt sends, and to whom</h3>
           <p>
-            The app contacts exactly two hosts, both of them GitHub: <code>api.github.com</code> and{' '}
+            By default the app contacts exactly two hosts, both of them GitHub: <code>api.github.com</code> and{' '}
             <code>github.com</code>. It does so to:
           </p>
           <ul>
@@ -165,14 +166,32 @@ export default function PrivacyPage() {
             data.
           </div>
 
+          <h3>Optional crash reports</h3>
+          <p>
+            Basalt can send crash reports to Google&rsquo;s Crashlytics service, so problems can be found and fixed. This
+            is <strong>off the moment you install the app</strong>, and stays off until you turn it on yourself in{' '}
+            <strong>Settings &rarr; Privacy</strong>.
+          </p>
+          <p>
+            When it is on, a report contains the app version, the device model and OS version, and where in the code
+            the problem happened. It never contains a note&rsquo;s content, a file path, a repository or owner name,
+            or a GitHub token &mdash; the code that builds each report only accepts a fixed set of non-identifying
+            values, so there is no path by which those could leak into one. Turning the setting back off stops
+            reporting immediately. Reports already sent can be deleted by request; see Contact below.
+          </p>
+          <p>
+            This is the one exception to &ldquo;GitHub and nothing else&rdquo; above, and it is opt-in specifically so
+            that exception is yours to grant.
+          </p>
+
           <h3>What Basalt does not do</h3>
           <ul>
             <li>No analytics, telemetry, or usage statistics.</li>
-            <li>No crash or error reporting to any third party.</li>
             <li>No advertising, ad identifiers, or ad networks.</li>
             <li>No selling or sharing of personal data — there is none to sell.</li>
             <li>No location, contacts, camera, microphone, or call-log access. The app never requests them.</li>
             <li>No user accounts, profiles, or sign-up.</li>
+            <li>No crash reporting unless you turn it on, and never with note content when you do.</li>
           </ul>
 
           <h3>Permissions, and why each one exists</h3>
