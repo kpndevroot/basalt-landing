@@ -10,8 +10,8 @@ const ISSUES = 'https://github.com/kpndevroot/basalt/issues';
  * Play requires a *stable, publicly reachable* policy URL on the listing, and reviewers check that
  * the page's claims match the APK's manifest and its actual network behaviour. So every statement
  * here is one that can be checked against the source: the permission list is
- * `android/app/src/main/AndroidManifest.xml` verbatim, and "optional, off by default, no note
- * content" is a claim about `src/crash/index.ts` and the settings toggle guarding it — both
+ * `android/app/src/main/AndroidManifest.xml` verbatim, and "on by default, no note content, one tap
+ * to turn off" is a claim about `src/crash/index.ts` and the settings toggle guarding it — both
  * readable in the repo, not taken on trust.
  */
 const UPDATED = '19 August 2026';
@@ -19,7 +19,7 @@ const UPDATED = '19 August 2026';
 export const metadata: Metadata = {
   title: 'Privacy Policy — Basalt',
   description:
-    'Basalt has no servers and no accounts. Your vault and your GitHub credentials stay on your device. Crash reports are optional, off by default, and never include note content.',
+    'Basalt has no servers and no accounts. Your vault and your GitHub credentials stay on your device. Crash reports are on by default, never include note content, and can be turned off in one tap.',
   alternates: { canonical: '/privacy/' },
 };
 
@@ -31,11 +31,11 @@ const SUMMARY = [
   },
   {
     title: 'No ads, no tracking, no accounts',
-    body: 'No advertising identifier, no third-party analytics, no user accounts. Basalt ships an optional crash reporter — off by default, and detailed below.',
+    body: 'No advertising identifier, no third-party analytics, no user accounts. Basalt ships a crash reporter, on by default and detailed below \u2014 turn it off any time in Settings.',
   },
   {
-    title: 'GitHub, and nothing else unless you opt in',
-    body: 'The app talks to GitHub to read your repo, push your commits, and check for a new release. If you turn on crash reporting, the app also talks to Google\u2019s Crashlytics service \u2014 never on by default, and never with your notes.',
+    title: 'GitHub, plus crash reports unless you turn them off',
+    body: 'The app talks to GitHub to read your repo, push your commits, and check for a new release. It also talks to Google\u2019s Crashlytics service to report crashes, by default \u2014 turned off in one tap in Settings, and never with your notes either way.',
   },
   {
     title: 'Your credentials never leave the device',
@@ -166,11 +166,11 @@ export default function PrivacyPage() {
             data.
           </div>
 
-          <h3>Optional crash reports</h3>
+          <h3>Crash reports</h3>
           <p>
-            Basalt can send crash reports to Google&rsquo;s Crashlytics service, so problems can be found and fixed. This
-            is <strong>off the moment you install the app</strong>, and stays off until you turn it on yourself in{' '}
-            <strong>Settings &rarr; Privacy</strong>.
+            Basalt sends crash reports to Google&rsquo;s Crashlytics service, so problems can be found and fixed. This
+            is <strong>on by default</strong>, and you can turn it off at any time in{' '}
+            <strong>Settings &rarr; Privacy</strong> &mdash; the app stops reporting the moment you do.
           </p>
           <p>
             When it is on, a report contains the app version, the device model and OS version, and where in the code
@@ -180,8 +180,9 @@ export default function PrivacyPage() {
             reporting immediately. Reports already sent can be deleted by request; see Contact below.
           </p>
           <p>
-            This is the one exception to &ldquo;GitHub and nothing else&rdquo; above, and it is opt-in specifically so
-            that exception is yours to grant.
+            This is the one exception to &ldquo;GitHub and nothing else&rdquo; above. It is on by default so problems
+            are caught without asking anything of you first, and it is one tap to switch off if you would rather it
+            were not.
           </p>
 
           <h3>What Basalt does not do</h3>
@@ -191,7 +192,7 @@ export default function PrivacyPage() {
             <li>No selling or sharing of personal data — there is none to sell.</li>
             <li>No location, contacts, camera, microphone, or call-log access. The app never requests them.</li>
             <li>No user accounts, profiles, or sign-up.</li>
-            <li>No crash reporting unless you turn it on, and never with note content when you do.</li>
+            <li>No note content, file path, repository or owner name in a crash report, ever \u2014 that holds whether reporting is on or off.</li>
           </ul>
 
           <h3>Permissions, and why each one exists</h3>
