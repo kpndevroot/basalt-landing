@@ -302,15 +302,15 @@ export default function Home() {
       <main id="top">
         {/* hero */}
         <section className="wrap hero">
-          <span className="eyebrow">Obsidian at the desk · Basalt in your pocket</span>
+          <span className="eyebrow">Offline-first · Backed by your own GitHub repo</span>
           <h1>
-            Your notes, synced free.
+            Your entire vault, in your pocket.
             <br />
-            <span className="accent">Through a repo you own.</span>
+            <span className="accent">Offline. Writable. Free.</span>
           </h1>
           <p className="lede">
-            Your GitHub repo is the sync — no subscription, no account. Works offline and{' '}
-            <strong>writes back</strong>: edits commit themselves when the signal returns.
+            Search, backlinks and the graph all work with the network off — and every edit commits to your own GitHub
+            repo the moment it comes back. <strong>No subscription. No account with us.</strong>
           </p>
           <div className="hero-actions">
             <a className="btn btn-primary" href={DOWNLOAD} target="_blank" rel="noreferrer">
