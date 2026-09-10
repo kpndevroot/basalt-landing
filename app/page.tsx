@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   CheckboxIcon,
+  CoffeeIcon,
   DownloadIcon,
   FolderIcon,
   GithubIcon,
@@ -616,6 +617,7 @@ export default function Home() {
           </div>
           <div className="hero-actions" style={{ justifyContent: 'center' }}>
             <a className="btn btn-secondary" href={SUPPORT} target="_blank" rel="noreferrer">
+              <CoffeeIcon size={17} />
               Buy me a coffee
             </a>
           </div>

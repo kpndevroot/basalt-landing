@@ -5,6 +5,28 @@
  */
 type IconProps = { size?: number };
 
+export function CoffeeIcon({ size = 18 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" aria-hidden="true">
+      <path
+        d="M2.5 4.5h9v5a3.5 3.5 0 0 1-3.5 3.5H6A3.5 3.5 0 0 1 2.5 9.5v-5z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.5 6h1.2a1.8 1.8 0 0 1 0 3.6h-1.2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        strokeLinecap="round"
+      />
+      <path d="M5.5 1.6v1.4M8.5 1.6v1.4" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function FolderIcon({ size = 22 }: IconProps) {
   return (
     <svg width={size} height={size * (16 / 20)} viewBox="0 0 20 16" aria-hidden="true">

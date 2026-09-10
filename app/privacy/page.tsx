@@ -106,11 +106,10 @@ export default function PrivacyPage() {
         <section className="wrap section legal" style={{ paddingTop: 0 }}>
           <h3>Who is responsible</h3>
           <p>
-            Basalt is a free, open-source project published by <strong>kpndevroot</strong>. The complete source is at{' '}
-            <a href={REPO} target="_blank" rel="noreferrer">
-              github.com/kpndevroot/basalt
-            </a>
-            , so nothing in this policy has to be taken on trust — it can be read in the code.
+            Basalt is a free app published by <strong>kpndevroot</strong>. It is developed privately, so the claims
+            below are commitments about how the app behaves rather than something you can verify by reading the
+            source. Everything they describe is observable from the outside: the app talks to the two hosts named
+            above and to nothing else.
           </p>
 
           <h3>What Basalt stores, and where</h3>
@@ -243,8 +242,7 @@ export default function PrivacyPage() {
           <h3>Changes to this policy</h3>
           <p>
             If the app&rsquo;s data handling changes, this page changes with it and the date at the top is updated.
-            Because the policy tracks the source, the commit history of the repository is itself a record of what
-            changed and when.
+            The date is the record: a policy that has not moved is one whose behaviour has not moved either.
           </p>
 
           <h3>Contact</h3>
