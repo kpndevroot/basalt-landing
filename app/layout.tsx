@@ -25,7 +25,7 @@ const jetbrains = JetBrains_Mono({
 // path for the same reason — it is the half a search result would otherwise never learn about.
 const TITLE = 'Basalt — your markdown repo, on your phone';
 const DESCRIPTION =
-  'Basalt puts the Obsidian vault you keep in a GitHub repo on your phone — fully offline, and writable. Edits queue on the device and push as real commits when you are back online.';
+  'Sync your notes and wiki to your phone for free, through a GitHub repo you own — no sync subscription and no account. Works with Obsidian vaults, fully offline, and writable: edits queue on the device and push as real commits when you are back online.';
 
 export const metadata: Metadata = {
   // Without this, the generated share-card image resolves against a relative path and every

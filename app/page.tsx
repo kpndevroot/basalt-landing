@@ -91,7 +91,7 @@ const SHOTS = [
 
 /**
  * The positioning, in four lines. Deliberately written as a *standard someone can meet* rather
- * than as a claim about how many people meet it — see the note rendered under this grid. Each
+ * than as a boast about who meets it — see the note rendered under this grid. Each
  * habit names the thing Basalt actually does for it, so the pitch stays checkable against the
  * feature list further down.
  */
@@ -274,7 +274,7 @@ export default function Home() {
             Basalt
           </a>
           <nav className="nav-links">
-            <a className="nav-hide" href="#the-1">
+            <a className="nav-hide" href="#why">
               Why Basalt
             </a>
             <a className="nav-hide" href="#setup">
@@ -304,14 +304,14 @@ export default function Home() {
         <section className="wrap hero">
           <span className="eyebrow">Obsidian at the desk · Basalt in your pocket</span>
           <h1>
-            The 1% don&rsquo;t take better notes.
+            Sync your notes and wiki to your phone.
             <br />
-            <span className="accent">They just never lose them.</span>
+            <span className="accent">Free, through a repo you own.</span>
           </h1>
           <p className="lede">
-            Basalt puts the Obsidian vault you keep in a GitHub repo on your phone — fully offline, and{' '}
-            <strong>writable</strong>. Capture the thought on the bus, and it lands in your repo as a real commit when
-            the signal comes back. One vault, plain markdown, yours forever.
+            No sync subscription and no account with us: your own GitHub repo is the sync. Basalt puts that vault on
+            your phone — fully offline, and <strong>writable</strong>. Capture the thought on the bus and it lands in
+            the repo as a real commit when the signal comes back.
           </p>
           <div className="hero-actions">
             <a className="btn btn-primary" href={DOWNLOAD} target="_blank" rel="noreferrer">
@@ -362,11 +362,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* the 1% — the positioning, made checkable */}
-        <section id="the-1" className="wrap section">
+        {/* why it lasts — the positioning, made checkable */}
+        <section id="why" className="wrap section">
           <div className="section-head">
-            <span className="section-label">The 1%</span>
-            <h2>It is four habits, not a personality type.</h2>
+            <span className="section-label">Why it lasts</span>
+            <h2>What makes notes survive is not the app.</h2>
             <p>
               Nobody keeps their notes for a decade because they found a cleverer app. They keep them because of what
               the notes are made of, and where they live.
@@ -384,9 +384,9 @@ export default function Home() {
             ))}
           </div>
           <p className="aside">
-            <strong>&ldquo;The 1%&rdquo; is a standard, not a statistic.</strong> We have not counted anyone — those four
-            lines are the whole of it, and the first two are just Obsidian and git doing their job. Basalt exists
-            because the last two are the ones that break on a phone.
+            <strong>Those four lines are a standard, not a boast.</strong> The first two are just Obsidian and git
+            doing their job. Basalt exists because the last two are the ones that break the moment you are away from
+            the desk.
           </p>
         </section>
 
