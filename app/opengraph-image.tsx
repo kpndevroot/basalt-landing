@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 import { ImageResponse } from 'next/og';
 
 /**
@@ -6,7 +9,12 @@ import { ImageResponse } from 'next/og';
  * X, Reddit, Discord, WhatsApp — rendered as grey text for a product whose entire proof is what it
  * looks like. Drawn rather than photographed because the six screenshots are 540×1080 portraits,
  * and a portrait crushed into a 1200×630 card shows nothing legible.
+ *
+ * The mark is inlined as a data URI rather than referenced by URL: this renders at build time, when
+ * no server is listening on the site's own origin yet, so an <img src="/brand/mark.png"> would
+ * resolve to nothing and the card would ship with a hole where the logo goes.
  */
+const MARK = `data:image/png;base64,${readFileSync(join(process.cwd(), 'public/brand/mark.png')).toString('base64')}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export const alt = 'Basalt — your markdown repo, on your phone';
@@ -29,22 +37,8 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginBottom: 36 }}>
-          <div
-            style={{
-              width: 54,
-              height: 54,
-              borderRadius: 13,
-              background: '#e0964a',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#0b0b0c',
-              fontSize: 34,
-              fontWeight: 800,
-            }}
-          >
-            B
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={MARK} alt="" width={40} height={60} />
           <div style={{ color: '#ecebe8', fontSize: 40, fontWeight: 700, letterSpacing: -0.5 }}>Basalt</div>
         </div>
         <div style={{ color: '#ecebe8', fontSize: 68, fontWeight: 800, lineHeight: 1.12, letterSpacing: -2 }}>

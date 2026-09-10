@@ -46,6 +46,18 @@
   --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
 }
 
+/*
+ * The mark ships in one cut only — light-on-transparent, the variant the app uses against its own
+ * dark splash. That is invisible on this page's light theme, and there is no second file to swap
+ * to, so the single asset is inverted instead. It is pure white on transparency, so `invert(1)`
+ * lands on true black rather than on a muddy near-colour.
+ */
+@media (prefers-color-scheme: light) {
+  .brand-mark {
+    filter: invert(1);
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --bg: #f7f7f5;

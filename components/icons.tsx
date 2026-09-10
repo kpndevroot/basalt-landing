@@ -227,18 +227,25 @@ export function GithubIcon({ size = 20 }: IconProps) {
   );
 }
 
+/**
+ * The app's own mark, not a drawing of one. `public/brand/mark.png` is a copy of the icon the app
+ * ships as its splash (`assets/images/splash-icon.png`) — the light-on-transparent cut, which is
+ * the variant built for a dark ground and therefore the only one that survives this page's
+ * background. The square store icon is black on white and would disappear here.
+ *
+ * Sized by height so the brand row's baseline stays put; the width follows the source's 409×609
+ * proportions rather than being squared off.
+ */
 export function Logo({ size = 26 }: IconProps) {
-  // A basalt column — hexagonal prism, the accent-filled brand mark (no in-app equivalent).
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" fill="none">
-      <path
-        d="M12 2l8 4.6v9.2L12 22l-8-4.6V6.6z"
-        fill="var(--accent)"
-        stroke="var(--accent)"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path d="M12 2v20M4 6.6l8 4.6 8-4.6" stroke="var(--on-accent)" strokeWidth="1.4" strokeLinejoin="round" opacity="0.55" />
-    </svg>
+    <img
+      src="/brand/mark.png"
+      alt=""
+      aria-hidden="true"
+      className="brand-mark"
+      height={size}
+      width={Math.round((size * 409) / 609)}
+      style={{ display: 'block' }}
+    />
   );
 }
