@@ -304,9 +304,9 @@ export default function Home() {
         <section className="wrap hero">
           <span className="eyebrow">Obsidian at the desk · Basalt in your pocket</span>
           <h1>
-            Sync your notes and wiki to your phone.
+            Your notes, synced free.
             <br />
-            <span className="accent">Free, through a repo you own.</span>
+            <span className="accent">Through a repo you own.</span>
           </h1>
           <p className="lede">
             No sync subscription and no account with us: your own GitHub repo is the sync. Basalt puts that vault on
