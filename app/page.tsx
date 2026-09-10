@@ -39,6 +39,15 @@ const SUPPORT = 'https://buymeacoffee.com/kpndevroot';
  */
 const DOWNLOAD = 'https://play.google.com/store/apps/details?id=com.vishnuv.basalt';
 
+/**
+ * Held back for now, not deleted — the section, its copy and every link into it stay in this file
+ * so bringing it back is one word. Flipping this to `true` restores the plugin section, its nav
+ * entry, the closing CTA's secondary button and the footer link together; they are gated on the
+ * same flag precisely so the page can never ship a nav item pointing at a section that is not
+ * rendered.
+ */
+const SHOW_PLUGIN: boolean = false;
+
 /** Real captures from a release build on a Pixel 8, not renders. Files live in `public/shots`. */
 const SHOTS = [
   {
@@ -228,7 +237,7 @@ const ALSO = [
 const FAQ = [
   {
     q: 'Do I have to keep my vault in a GitHub repo?',
-    a: 'Yes — the repo is the sync mechanism, not an add-on. If your vault is only a folder today, the Obsidian plugin turns it into a repo and keeps it current from then on. You can also try Basalt on its bundled sample vault first, with no repo and no account at all.',
+    a: 'Yes — the repo is the sync mechanism, not an add-on. If your vault is only a folder today, pushing it to GitHub once is the whole setup. You can also try Basalt on its bundled sample vault first, with no repo and no account at all.',
   },
   {
     q: 'Does it work with private repos?',
@@ -270,9 +279,11 @@ export default function Home() {
             <a className="nav-hide" href="#setup">
               Your setup
             </a>
-            <a className="nav-hide" href="#plugin">
-              Plugin
-            </a>
+            {SHOW_PLUGIN && (
+              <a className="nav-hide" href="#plugin">
+                Plugin
+              </a>
+            )}
             <a className="nav-hide" href="#features">
               Features
             </a>
@@ -319,8 +330,8 @@ export default function Home() {
           {/* The quiet disqualifier. Most Obsidian users do not keep their vault in git, and the page
               assumed they did — this names the gap immediately and points at the thing that closes it. */}
           <p className="hero-note">
-            Vault not in a repo yet? <a href="#plugin">The Obsidian plugin does that part</a> — one setting, a few
-            minutes, and you never think about it again.
+            Vault not in a repo yet? <a href="#setup">That is the one piece of setup</a> — push the folder you already
+            have to GitHub once, and Basalt takes it from there.
           </p>
 
         </section>
@@ -419,6 +430,8 @@ export default function Home() {
           </div>
         </section>
 
+        {SHOW_PLUGIN && (
+          <>
         {/* the plugin — the desk→repo arrow, which Obsidian cannot draw on its own */}
         <section id="plugin" className="wrap section" style={{ paddingTop: 0 }}>
           <div className="panel">
@@ -512,6 +525,8 @@ export default function Home() {
             ))}
           </div>
         </section>
+          </>
+        )}
 
         {/* features */}
         <section id="features" className="wrap section" style={{ paddingTop: 0 }}>
@@ -581,9 +596,8 @@ export default function Home() {
                 <DownloadIcon />
                 Download the APK
               </a>
-              <a className="btn btn-secondary" href={PLUGIN} target="_blank" rel="noreferrer">
-                <GithubIcon size={18} />
-                Get the Obsidian plugin
+              <a className="btn btn-secondary" href="#faq">
+                Read the FAQ
               </a>
             </div>
             <p className="cta-note">Android, arm64. No iOS build yet.</p>
@@ -621,9 +635,11 @@ export default function Home() {
             <a href={SUPPORT} target="_blank" rel="noreferrer">
               Support
             </a>
-            <a href={PLUGIN} target="_blank" rel="noreferrer">
-              Obsidian plugin
-            </a>
+            {SHOW_PLUGIN && (
+              <a href={PLUGIN} target="_blank" rel="noreferrer">
+                Obsidian plugin
+              </a>
+            )}
           </span>
         </div>
       </footer>
