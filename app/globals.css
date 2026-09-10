@@ -207,14 +207,20 @@ h3 {
   gap: 28px;
 }
 
-.nav-links a {
+/*
+ * `:not(.btn)` is load-bearing, not tidiness. `.nav-links a` is a class *and* a type selector, so it
+ * outranks `.btn-primary`'s own `color` — which left the Download button painting its label in the
+ * nav's link colour over the accent fill: orange on orange, effectively unreadable. Excluding
+ * buttons here lets every `.btn` keep the foreground its own rule chose.
+ */
+.nav-links a:not(.btn) {
   color: var(--secondary);
   font-size: 14px;
   font-weight: 600;
   transition: color 0.12s ease;
 }
 
-.nav-links a:hover {
+.nav-links a:not(.btn):hover {
   color: var(--text);
 }
 
