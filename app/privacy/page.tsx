@@ -1,18 +1,25 @@
 import type { Metadata } from 'next';
 
-import { DownloadIcon, GithubIcon, Logo } from '@/components/icons';
+import { DownloadIcon, Logo } from '@/components/icons';
 
-const REPO = 'https://github.com/kpndevroot/basalt';
-const RELEASE = 'https://github.com/kpndevroot/basalt/releases/latest';
-const ISSUES = 'https://github.com/kpndevroot/basalt/issues';
+const DOWNLOAD = 'https://play.google.com/store/apps/details?id=com.vishnuv.basalt';
+
+/**
+ * The app's own repository is private, so it cannot host the contact channel a privacy policy has
+ * to provide — an issues link nobody can open is not a contact method. This site's repository is
+ * public, so its tracker is the one channel here that a stranger can actually reach. Swap this for
+ * a `mailto:` the day there is an address to publish; a direct address is the better answer, and
+ * this is the honest stand-in until then.
+ */
+const CONTACT = 'https://github.com/kpndevroot/basalt-landing/issues';
 
 /**
  * Play requires a *stable, publicly reachable* policy URL on the listing, and reviewers check that
  * the page's claims match the APK's manifest and its actual network behaviour. So every statement
- * here is one that can be checked against the source: the permission list is
- * `android/app/src/main/AndroidManifest.xml` verbatim, and "on by default, no note content, one tap
- * to turn off" is a claim about `src/crash/index.ts` and the settings toggle guarding it — both
- * readable in the repo, not taken on trust.
+ * here is one a reviewer can check from the outside: the permission list is the APK manifest
+ * verbatim, and "on by default, no note content, one tap to turn off" is observable by running the
+ * app and watching what it sends. The source is not public, so nothing here may rest on being
+ * readable — only on being true of the build that ships.
  */
 const UPDATED = '19 August 2026';
 
@@ -66,10 +73,7 @@ export default function PrivacyPage() {
             <a className="nav-hide" href="/">
               Home
             </a>
-            <a className="nav-hide" href={REPO} target="_blank" rel="noreferrer">
-              Source
-            </a>
-            <a className="btn btn-primary btn-sm" href={RELEASE} target="_blank" rel="noreferrer">
+            <a className="btn btn-primary btn-sm" href={DOWNLOAD} target="_blank" rel="noreferrer">
               <DownloadIcon size={15} />
               Download
             </a>
@@ -247,15 +251,12 @@ export default function PrivacyPage() {
 
           <h3>Contact</h3>
           <p>
-            Questions about privacy, or a suspected problem with it, are best raised as an issue at{' '}
-            <a href={ISSUES} target="_blank" rel="noreferrer">
-              github.com/kpndevroot/basalt/issues
+            Questions about privacy, or a suspected problem with it, can be raised at{' '}
+            <a href={CONTACT} target="_blank" rel="noreferrer">
+              github.com/kpndevroot/basalt-landing/issues
             </a>
-            . For security reports, please follow the disclosure process in the repository&rsquo;s{' '}
-            <a href={`${REPO}/blob/main/SECURITY.md`} target="_blank" rel="noreferrer">
-              SECURITY.md
-            </a>
-            .
+            . For a suspected security problem, please report it there without publishing the details, and you will
+            get a way to send them privately.
           </p>
         </section>
       </main>
@@ -267,9 +268,7 @@ export default function PrivacyPage() {
             Basalt
           </span>
           <span>Your markdown repo, on your phone. Works with Obsidian vaults.</span>
-          <a href={REPO} target="_blank" rel="noreferrer">
-            <GithubIcon size={14} /> github.com/kpndevroot/basalt
-          </a>
+          <a href="/">Home</a>
         </div>
       </footer>
     </>
