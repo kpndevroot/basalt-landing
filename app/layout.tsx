@@ -46,13 +46,24 @@ export const metadata: Metadata = {
   applicationName: 'Basalt',
   authors: [{ name: 'kpndevroot', url: 'https://github.com/kpndevroot' }],
   openGraph: {
+    /**
+     * A static file in `public/`, not the `opengraph-image.tsx` route this used to be. That route
+     * emitted an extension-less file behind a trailing-slash redirect, so scrapers were served a
+     * 308 and then `content-type: application/octet-stream` — and WhatsApp, Facebook and the rest
+     * simply drop an og:image that is not declared as an image. `/og.png` has an extension, so it
+     * is served as `image/png` at a URL that does not redirect.
+     *
+     * It was produced by `next/og` (the generator is in this file's git history); to change it,
+     * restore that route, build, and copy `out/opengraph-image` back to `public/og.png`.
+     */
+    images: ['/og.png'],
     title: TITLE,
     description:
       'Obsidian at the desk, Basalt in your pocket. One GitHub repo underneath — offline search, backlinks, the connection graph, and edits that commit themselves when the signal returns.',
     type: 'website',
     siteName: 'Basalt',
   },
-  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION },
+  twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['/og.png'] },
 };
 
 export const viewport: Viewport = {
