@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 
 import './globals.css';
+import { SITE } from './site';
 
 // The app's exact faces: Plus Jakarta Sans for display, JetBrains Mono for code/metadata.
 // next/font self-hosts them at build time, so the static export ships no external requests.
@@ -27,6 +28,9 @@ const DESCRIPTION =
   'Basalt puts the Obsidian vault you keep in a GitHub repo on your phone — fully offline, and writable. Edits queue on the device and push as real commits when you are back online.';
 
 export const metadata: Metadata = {
+  // Without this, the generated share-card image resolves against a relative path and every
+  // scraper drops it — the card silently falls back to plain text.
+  metadataBase: new URL(SITE),
   title: TITLE,
   description: DESCRIPTION,
   keywords: [

@@ -21,10 +21,23 @@ import {
   UploadIcon,
 } from '@/components/icons';
 
-const REPO = 'https://github.com/kpndevroot/basalt';
-const RELEASE = 'https://github.com/kpndevroot/basalt/releases/latest';
+/**
+ * Basalt's own repository is private, so nothing on this page may link into it: every such link
+ * 404s for the visitor, which is worse than no link at all. That is also why no licence is claimed
+ * anywhere here — an MIT badge over source nobody can read is a promise this page cannot keep.
+ *
+ * The plugin is a genuinely public repo and keeps its links.
+ */
 const PLUGIN = 'https://github.com/kpndevroot/obsidian-basalt-causeway';
 const PLUGIN_RELEASE = 'https://github.com/kpndevroot/obsidian-basalt-causeway/releases';
+const SUPPORT = 'https://buymeacoffee.com/kpndevroot';
+
+/**
+ * The Play listing for `com.vishnuv.basalt`. This URL is deterministic from the application id and
+ * goes live the moment the listing does — unlike a private-repo release link, which never resolves
+ * for anyone. If distribution changes, this is the one line to edit.
+ */
+const DOWNLOAD = 'https://play.google.com/store/apps/details?id=com.vishnuv.basalt';
 
 /** Real captures from a release build on a Pixel 8, not renders. Files live in `public/shots`. */
 const SHOTS = [
@@ -207,7 +220,39 @@ const ALSO = [
   { icon: <FolderIcon size={18} />, text: 'Eight themes, light and dark, reduce-motion aware' },
 ];
 
-const STACK = ['Expo SDK 57', 'React Native 0.86', 'React 19', 'SQLite · FTS5', 'expo-router', 'TypeScript strict', 'MIT licensed'];
+/**
+ * The objections a visitor forms while scrolling, answered before the closing ask. Every answer
+ * here is a behaviour the app actually ships — nothing aspirational, and nothing that would have to
+ * be walked back in a support thread later.
+ */
+const FAQ = [
+  {
+    q: 'Do I have to keep my vault in a GitHub repo?',
+    a: 'Yes — the repo is the sync mechanism, not an add-on. If your vault is only a folder today, the Obsidian plugin turns it into a repo and keeps it current from then on. You can also try Basalt on its bundled sample vault first, with no repo and no account at all.',
+  },
+  {
+    q: 'Does it work with private repos?',
+    a: 'Yes. Sign in with GitHub and private repositories work exactly like public ones — which is what most vaults are. Public repos work without signing in at all.',
+  },
+  {
+    q: 'Where does my GitHub token live?',
+    a: 'In the device keystore, and nowhere else. There is no Basalt server to send it to. The app talks to exactly two hosts, both of them GitHub, and nothing about your notes leaves the phone except the commits you push.',
+  },
+  {
+    q: 'What happens if the repo moved on while I was offline?',
+    a: 'Basalt tells you before it writes anything. A pending-changes screen shows exactly what will be committed, and if the remote moved first you resolve it yourself — overwrite, discard, or keep both copies.',
+  },
+  {
+    q: 'Does it download my whole vault?',
+    a: 'Once, as a single zipball pinned to an exact commit. After that the notes live on disk and only what is needed to find things — the search index, the link graph, tags — goes into the database. Later syncs pull the new commit, not the whole history.',
+  },
+  {
+    q: 'Is there an iPhone version?',
+    a: 'Not yet. Basalt is Android today. Nothing about the design is Android-specific, so it is a question of time rather than of architecture.',
+  },
+];
+
+const STACK = ['Expo SDK 57', 'React Native 0.86', 'React 19', 'SQLite · FTS5', 'expo-router', 'TypeScript strict'];
 
 export default function Home() {
   return (
@@ -220,7 +265,7 @@ export default function Home() {
           </a>
           <nav className="nav-links">
             <a className="nav-hide" href="#the-1">
-              The 1%
+              Why Basalt
             </a>
             <a className="nav-hide" href="#setup">
               Your setup
@@ -231,7 +276,10 @@ export default function Home() {
             <a className="nav-hide" href="#features">
               Features
             </a>
-            <a className="btn btn-primary btn-sm" href={RELEASE} target="_blank" rel="noreferrer">
+            <a className="nav-hide" href="#faq">
+              FAQ
+            </a>
+            <a className="btn btn-primary btn-sm" href={DOWNLOAD} target="_blank" rel="noreferrer">
               <DownloadIcon size={15} />
               Download
             </a>
@@ -254,17 +302,25 @@ export default function Home() {
             the signal comes back. One vault, plain markdown, yours forever.
           </p>
           <div className="hero-actions">
-            <a className="btn btn-primary" href={RELEASE} target="_blank" rel="noreferrer">
+            <a className="btn btn-primary" href={DOWNLOAD} target="_blank" rel="noreferrer">
               <DownloadIcon />
               Download for Android
             </a>
-            <a className="btn btn-secondary" href={REPO} target="_blank" rel="noreferrer">
-              <GithubIcon size={18} />
-              Source on GitHub
+            <a className="btn btn-secondary" href="#setup">
+              <ArrowRight size={16} />
+              How it works
             </a>
           </div>
+          {/* Platform reality belongs beside the button, not in the closing note four screens down:
+              an iPhone visitor should learn it before investing the whole scroll, not after. */}
           <p className="hero-note">
-            Free and MIT-licensed · No account with us, ever · Try the bundled sample vault with no repo at all
+            Free · Android · No account with us, ever · Try the bundled sample vault with no repo at all
+          </p>
+          {/* The quiet disqualifier. Most Obsidian users do not keep their vault in git, and the page
+              assumed they did — this names the gap immediately and points at the thing that closes it. */}
+          <p className="hero-note">
+            Vault not in a repo yet? <a href="#plugin">The Obsidian plugin does that part</a> — one setting, a few
+            minutes, and you never think about it again.
           </p>
 
         </section>
@@ -483,6 +539,23 @@ export default function Home() {
           </ul>
         </section>
 
+        {/* faq — the objections, answered before the ask */}
+        <section id="faq" className="wrap section" style={{ paddingTop: 0 }}>
+          <div className="section-head">
+            <span className="section-label">Questions</span>
+            <h2>The things you are about to wonder.</h2>
+            <p>Short answers. Every one of them describes what the app does today, not what it might do.</p>
+          </div>
+          <div className="features">
+            {FAQ.map((f) => (
+              <article className="card" key={f.q}>
+                <h3>{f.q}</h3>
+                <p>{f.a}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {/* stack */}
         <section className="wrap section" style={{ paddingTop: 0, textAlign: 'center' }}>
           <div className="section-label" style={{ marginBottom: 20 }}>
@@ -504,16 +577,33 @@ export default function Home() {
               writable — with the network off.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href={RELEASE} target="_blank" rel="noreferrer">
+              <a className="btn btn-primary" href={DOWNLOAD} target="_blank" rel="noreferrer">
                 <DownloadIcon />
                 Download the APK
               </a>
-              <a className="btn btn-secondary" href={REPO} target="_blank" rel="noreferrer">
+              <a className="btn btn-secondary" href={PLUGIN} target="_blank" rel="noreferrer">
                 <GithubIcon size={18} />
-                Read the source
+                Get the Obsidian plugin
               </a>
             </div>
-            <p className="cta-note">Android arm64, signed and attached to every release. iOS builds from source.</p>
+            <p className="cta-note">Android, arm64. No iOS build yet.</p>
+          </div>
+        </section>
+        {/* support — deliberately after the download CTA, and deliberately small */}
+        <section className="wrap section" style={{ paddingTop: 0 }}>
+          <div className="section-head section-head-center">
+            <div className="section-label">Support</div>
+            <h2>Free, and staying that way.</h2>
+            <p>
+              Basalt has no subscription, no account and no server of mine — nothing about it is gated, and nothing
+              here changes if you never pay a rupee. If it has earned a place on your phone, you can buy me a coffee.
+              It covers the developer accounts and the evenings, and it buys you nothing but my thanks.
+            </p>
+          </div>
+          <div className="hero-actions" style={{ justifyContent: 'center' }}>
+            <a className="btn btn-secondary" href={SUPPORT} target="_blank" rel="noreferrer">
+              Buy me a coffee
+            </a>
           </div>
         </section>
       </main>
@@ -528,8 +618,11 @@ export default function Home() {
           <span className="footer-links">
             {/* Play requires this URL to be reachable from the listing, and to stay reachable. */}
             <a href="/privacy/">Privacy</a>
-            <a href={REPO} target="_blank" rel="noreferrer">
-              github.com/kpndevroot/basalt
+            <a href={SUPPORT} target="_blank" rel="noreferrer">
+              Support
+            </a>
+            <a href={PLUGIN} target="_blank" rel="noreferrer">
+              Obsidian plugin
             </a>
           </span>
         </div>
