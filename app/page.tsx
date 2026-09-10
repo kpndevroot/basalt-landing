@@ -98,15 +98,15 @@ const SHOTS = [
 const HABITS = [
   {
     title: 'The files stay yours',
-    body: 'Plain markdown in a repo you own. No proprietary store, no account with us, no export step to dread later — Basalt keeps no server and no copy of your vault anywhere but your device.',
+    body: 'Plain markdown, in a repo you own. No proprietary format, no account with us, and no export to dread later. There is no server holding a copy of your notes.',
   },
   {
     title: 'One vault, not five apps',
-    body: 'The same folder on the desk and in your pocket. Obsidian writes it, Basalt writes it, and the repo underneath keeps them honest — so there is never a second place your notes half-live.',
+    body: 'The same folder at your desk and in your pocket. Obsidian writes to it, Basalt writes to it, and the repo keeps them in step. Your notes never half-live in two places.',
   },
   {
     title: 'Capture where the thought happens',
-    body: 'Which is almost never at the desk. Basalt edits offline on the phone and queues the commit; it lands the moment you have a connection again. No connection, no lost thought.',
+    body: 'Which is hardly ever at your desk. Write it on your phone with no signal at all, and it commits itself the moment you are back online.',
   },
   {
     title: 'Nothing is ever quietly lost',
@@ -124,22 +124,22 @@ const STEPS = [
   {
     icon: <RefreshIcon />,
     title: 'Pull',
-    body: 'Basalt fetches your repo as a zipball pinned to an exact commit SHA — the whole vault in one request.',
+    body: 'Basalt downloads your whole repo in one request, pinned to an exact commit.',
   },
   {
     icon: <OutlineIcon />,
     title: 'Index',
-    body: 'The snapshot is swapped in atomically, then files, an FTS5 full-text index, the link graph and tags go into SQLite.',
+    body: 'The new copy is swapped in cleanly, then the search index, the link graph and your tags are built.',
   },
   {
     icon: <PencilIcon />,
     title: 'Read and write',
-    body: 'Note bodies stay on disk and render natively. Edit any of them with the network off — the queue holds your changes.',
+    body: 'Your notes sit on the phone and render properly. Edit any of them with no signal — the changes wait in a queue.',
   },
   {
     icon: <UploadIcon />,
     title: 'Push',
-    body: 'Queued edits go up as real commits to your branch. Review them first, and resolve it yourself if the remote moved on.',
+    body: 'Those changes go up as real commits. You see them before they leave, and you decide what happens if the repo moved on.',
   },
 ];
 
@@ -176,47 +176,47 @@ const FEATURES = [
   {
     icon: <OfflineIcon />,
     title: 'Offline-first, not offline-tolerant',
-    body: 'After the first sync the network is optional. Browsing, search, wikilinks, tags and the graph all work on a plane, on the tube, or on no signal at all.',
+    body: 'After the first sync you do not need the internet. Browsing, search, links, tags and the graph all work on a plane, on the tube, or with no signal at all.',
   },
   {
     icon: <PencilIcon />,
     title: 'Edit offline — commits when you are back',
-    body: 'A full markdown editor with an insertion toolbar for the symbols that hurt to type on a phone. Edits queue locally and push as real commits later.',
+    body: 'A proper markdown editor, with a toolbar for the characters that are painful to type on a phone. Write now, and it commits itself later.',
   },
   {
     icon: <UploadIcon />,
     title: 'Review before you push',
-    body: 'A pending-changes screen shows exactly what will be committed. If GitHub moved on first, resolve it your way — overwrite, discard, or keep both copies.',
+    body: 'You see exactly what is about to be committed. If GitHub changed while you were away, you choose what happens: overwrite, discard, or keep both.',
   },
   {
     icon: <SearchIcon size={22} />,
     title: 'Search that answers instantly',
-    body: 'SQLite FTS5 indexes every note at sync time, ranked with the matching snippet highlighted — plus a fuzzy quick switcher for jumping straight by name.',
+    body: 'Every note is indexed as it syncs, so results come back instantly with the matching line highlighted. There is a quick switcher too, if you just want to jump by name.',
   },
   {
     icon: <JumpIcon />,
     title: 'Backlinks and linked mentions',
-    body: '[[wikilinks]] resolve on-device the way you expect, the reverse edges are indexed, and every note ends with a list of what points back at it.',
+    body: '[[wikilinks]] work the way you expect, and every note ends with a list of the notes pointing back at it.',
   },
   {
     icon: <GraphIcon />,
     title: 'The connection graph',
-    body: 'The whole vault as a graph, with filters, search and a minimap — or scoped to the neighbourhood of the single note you are reading.',
+    body: 'See the whole vault as a graph, with filters, search and a minimap. Or zoom into just the note you are reading and what surrounds it.',
   },
   {
     icon: <NoteIcon />,
     title: 'Real Obsidian markdown',
-    body: 'Callouts, transclusion, footnotes, ==highlights==, frontmatter, tags, tables, fenced code and Mermaid diagrams — rendered, not printed as raw syntax.',
+    body: 'Callouts, footnotes, ==highlights==, frontmatter, tags, tables, code blocks and Mermaid diagrams all render properly, instead of showing you the raw syntax.',
   },
   {
     icon: <CheckboxIcon />,
     title: 'Tick a box without opening the editor',
-    body: 'Task lists are tappable straight from the page, and a dated checklist draws itself as a month calendar — which is all a habit tracker ever needed to be.',
+    body: 'Tap a task straight from the page, no editor needed. A dated checklist draws itself as a calendar, which is all a habit tracker really has to be.',
   },
   {
     icon: <HighlightIcon />,
     title: 'Highlights that survive a re-sync',
-    body: 'Mark a passage, export the set, and find your marks still on the right words after the note has been edited somewhere else and pulled back down.',
+    body: 'Mark a passage and it stays on the right words, even after the note has been edited on your laptop and synced back down.',
   },
 ];
 
@@ -224,10 +224,10 @@ const FEATURES = [
 const ALSO = [
   { icon: <LayersIcon size={18} />, text: 'Several vaults side by side' },
   { icon: <GithubIcon size={18} />, text: 'Public repos work without signing in' },
-  { icon: <LockIcon size={16} />, text: 'Biometric app-lock and a capture guard' },
-  { icon: <RefreshIcon size={17} />, text: 'Background sync when the repo moves ahead' },
-  { icon: <TagIcon size={18} />, text: 'Tags as first-class navigation' },
-  { icon: <FolderIcon size={18} />, text: 'Eight themes, light and dark, reduce-motion aware' },
+  { icon: <LockIcon size={16} />, text: 'Lock it with your fingerprint or face' },
+  { icon: <RefreshIcon size={17} />, text: 'Syncs in the background when the repo changes' },
+  { icon: <TagIcon size={18} />, text: 'Browse by tag, the way you browse folders' },
+  { icon: <FolderIcon size={18} />, text: 'Eight themes, light and dark' },
 ];
 
 /**
@@ -238,27 +238,27 @@ const ALSO = [
 const FAQ = [
   {
     q: 'Do I have to keep my vault in a GitHub repo?',
-    a: 'Yes — the repo is the sync mechanism, not an add-on. If your vault is only a folder today, pushing it to GitHub once is the whole setup. You can also try Basalt on its bundled sample vault first, with no repo and no account at all.',
+    a: 'Yes — the repo is how the syncing happens. If your vault is just a folder today, pushing it to GitHub once is the whole setup. You can also try Basalt on the sample vault it comes with, without a repo or an account.',
   },
   {
     q: 'Does it work with private repos?',
-    a: 'Yes. Sign in with GitHub and private repositories work exactly like public ones — which is what most vaults are. Public repos work without signing in at all.',
+    a: 'Yes, and most vaults are private. Sign in with GitHub and they work exactly like public ones. Public repos do not need you to sign in at all.',
   },
   {
     q: 'Where does my GitHub token live?',
-    a: 'In the device keystore, and nowhere else. There is no Basalt server to send it to. The app talks to exactly two hosts, both of them GitHub, and nothing about your notes leaves the phone except the commits you push.',
+    a: 'In your phone keystore, and nowhere else. There is no Basalt server to send it to. The app only ever talks to GitHub, and nothing leaves your phone except the commits you push.',
   },
   {
     q: 'What happens if the repo moved on while I was offline?',
-    a: 'Basalt tells you before it writes anything. A pending-changes screen shows exactly what will be committed, and if the remote moved first you resolve it yourself — overwrite, discard, or keep both copies.',
+    a: 'You get told before anything is written. You see what is about to be committed, and if the repo changed first, you pick what happens: overwrite, discard, or keep both.',
   },
   {
     q: 'Does it download my whole vault?',
-    a: 'Once, as a single zipball pinned to an exact commit. After that the notes live on disk and only what is needed to find things — the search index, the link graph, tags — goes into the database. Later syncs pull the new commit, not the whole history.',
+    a: 'Once, in a single download. After that your notes live on the phone, and only what is needed to find them is kept in the database. Later syncs fetch the newest commit, not the whole history.',
   },
   {
     q: 'Is there an iPhone version?',
-    a: 'Not yet. Basalt is Android today. Nothing about the design is Android-specific, so it is a question of time rather than of architecture.',
+    a: 'Not yet — Basalt is Android for now. Nothing about it is tied to Android, so it is a matter of time rather than a rewrite.',
   },
 ];
 
@@ -345,8 +345,8 @@ export default function Home() {
             <span className="section-label">The app</span>
             <h2>Six screens, all of them offline.</h2>
             <p>
-              Real captures, not renders — taken on the bundled sample vault with the network off, which is exactly what
-              you get before connecting a repo.
+              Real screenshots, not mockups. Taken on the sample vault with the network switched off, which is exactly
+              what you get before you connect anything.
             </p>
           </div>
           <div className="shots">
@@ -367,8 +367,8 @@ export default function Home() {
             <span className="section-label">Why it lasts</span>
             <h2>What makes notes survive is not the app.</h2>
             <p>
-              Nobody keeps their notes for a decade because they found a cleverer app. They keep them because of what
-              the notes are made of, and where they live.
+              Nobody still has their notes ten years on because they found a cleverer app. They have them because of
+              what the notes are made of, and where they live.
             </p>
           </div>
           <div className="habits">
@@ -395,8 +395,8 @@ export default function Home() {
             <span className="section-label">Your setup</span>
             <h2>Basalt is the pocket half. Obsidian keeps the desk.</h2>
             <p>
-              This is not a replacement for Obsidian and it is not trying to be. It is the missing third of a loop you
-              probably already run — the part that works when you are nowhere near a laptop.
+              This is not trying to replace Obsidian. It is the missing piece of something you probably already do —
+              the part that works when your laptop is nowhere near you.
             </p>
           </div>
           <div className="loop">
@@ -533,7 +533,7 @@ export default function Home() {
           <div className="section-head">
             <span className="section-label">Features</span>
             <h2>Everything the desk version taught you to expect.</h2>
-            <p>Rendered natively, indexed on-device, and none of it waiting on a network round trip.</p>
+            <p>All of it runs on the phone, and none of it waits on the network.</p>
           </div>
           <div className="features">
             {FEATURES.map((f) => (
@@ -558,8 +558,8 @@ export default function Home() {
         <section id="faq" className="wrap section" style={{ paddingTop: 0 }}>
           <div className="section-head">
             <span className="section-label">Questions</span>
-            <h2>The things you are about to wonder.</h2>
-            <p>Short answers. Every one of them describes what the app does today, not what it might do.</p>
+            <h2>Things you are probably wondering.</h2>
+            <p>Short answers, and all of them about what the app does today.</p>
           </div>
           <div className="features">
             {FAQ.map((f) => (
@@ -588,8 +588,8 @@ export default function Home() {
           <div className="cta">
             <h2>Your notes are just a repo. Keep them that way.</h2>
             <p>
-              Point Basalt at the vault you already have, sync once, and carry all of it — readable, searchable and
-              writable — with the network off.
+              Point it at the vault you already have, sync once, and carry the whole thing around with you. Readable,
+              searchable and writable, with the network off.
             </p>
             <div className="hero-actions">
               <a className="btn btn-primary" href={DOWNLOAD} target="_blank" rel="noreferrer">
@@ -609,9 +609,9 @@ export default function Home() {
             <div className="section-label">Support</div>
             <h2>Free, and staying that way.</h2>
             <p>
-              Basalt has no subscription, no account and no server of mine — nothing about it is gated, and nothing
-              here changes if you never pay a rupee. If it has earned a place on your phone, you can buy me a coffee.
-              It covers the developer accounts and the evenings, and it buys you nothing but my thanks.
+              No subscription, no account, no server of mine. Nothing is locked behind paying, and nothing changes if
+              you never do. But if Basalt has earned a place on your phone, you can buy me a coffee. It covers the
+              developer accounts and the late evenings, and buys you nothing but my thanks.
             </p>
           </div>
           <div className="hero-actions" style={{ justifyContent: 'center' }}>
