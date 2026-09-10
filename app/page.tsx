@@ -309,9 +309,8 @@ export default function Home() {
             <span className="accent">Through a repo you own.</span>
           </h1>
           <p className="lede">
-            No sync subscription and no account with us: your own GitHub repo is the sync. Basalt puts that vault on
-            your phone — fully offline, and <strong>writable</strong>. Capture the thought on the bus and it lands in
-            the repo as a real commit when the signal comes back.
+            Your GitHub repo is the sync — no subscription, no account. Works offline and{' '}
+            <strong>writes back</strong>: edits commit themselves when the signal returns.
           </p>
           <div className="hero-actions">
             <a className="btn btn-primary" href={DOWNLOAD} target="_blank" rel="noreferrer">
